@@ -9,7 +9,6 @@
   "author": "Adam Johns",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "1.7.3",
-    "jsonfile": "4.0.0"
+    "node-fetch": "1.7.3"
   }
 }
