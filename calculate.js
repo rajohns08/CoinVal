@@ -12,7 +12,7 @@ async function getTop100MarketCapCoins() {
                 let subreddit = subreddits[coin.name];
                 if (typeof subreddit != 'undefined') {
                     totalCoinsExpected++;
-                    getSubredditSubscribers(coin.name, coin.market_cap_usd, coin.price_usd, subreddit);
+                    getSubredditSubscribers(coin, subreddit);
                 } else {
                     console.log('NEW COIN FOUND...' + coin.name);
                 }
@@ -23,12 +23,13 @@ async function getTop100MarketCapCoins() {
     }
 }
 
-async function getSubredditSubscribers(coin, marketCap, price, subreddit) {
+async function getSubredditSubscribers(coin, subreddit) {
     if (!subreddit) {
         let coinObj = {
-            "name": coin,
-            "price": price,
-            "value": 0
+            "name": coin.name,
+            "price": coin.price_usd,
+            "value": 0,
+            "capRank": coin.rank
         }
         coinObjs.push(coinObj);
         return;
@@ -40,11 +41,12 @@ async function getSubredditSubscribers(coin, marketCap, price, subreddit) {
             let about = await response.json();
             let data = about.data;
             let numSubscribers = data.subscribers;
-            let value = calculateValue(numSubscribers, marketCap);
+            let value = calculateValue(numSubscribers, coin.market_cap_usd);
             let coinObj = {
-                "name": coin,
-                "price": price,
-                "value": value.toExponential()
+                "name": coin.name,
+                "price": coin.price_usd,
+                "value": value.toExponential(),
+                "capRank": coin.rank
             };
             coinObjs.push(coinObj);
             if (coinObjs.length == totalCoinsExpected) {
@@ -52,7 +54,7 @@ async function getSubredditSubscribers(coin, marketCap, price, subreddit) {
                     return coin2.value - coin1.value;
                 });
                 for (let i = 0; i < coinObjs.length; i++) {
-                    console.log(i+1 + '. ' + coinObjs[i].name + ': ' + coinObjs[i].value + ' | $' + coinObjs[i].price);
+                    console.log(i+1 + '. ' + coinObjs[i].name + ': ' + coinObjs[i].value + ' | $' + coinObjs[i].price + ' | #' + coinObjs[i].capRank);
                 }
             }
         }
