@@ -24,6 +24,15 @@ async function getTop100MarketCapCoins() {
 }
 
 async function getSubredditSubscribers(coin, marketCap, subreddit) {
+    if (!subreddit) {
+        let coinObj = {
+            "name": coin,
+            "value": 0
+        }
+        coinObjs.push(coinObj);
+        return;
+    }
+
     try {
         let response = await fetch('https://www.reddit.com/r/' + subreddit + '/about.json');
         if (response.ok) {
@@ -37,7 +46,7 @@ async function getSubredditSubscribers(coin, marketCap, subreddit) {
             };
             coinObjs.push(coinObj);
             if (coinObjs.length == totalCoinsExpected) {
-                coinObjs.sort(function(coin1, coin2) {
+                coinObjs.sort(function (coin1, coin2) {
                     return coin2.value - coin1.value;
                 });
                 console.log(coinObjs);
