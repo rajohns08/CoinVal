@@ -6,6 +6,12 @@ async function getTop100MarketCapCoins() {
         if (response.ok) {
             let coins = await response.json();
             coins.forEach(function(coin) {
+
+                // get subreddit name from subreddits.json
+
+                // call that subreddit's about.json
+
+                // parse the subscribers key from about.json
                 console.log(coin.name + ' ' + coin.market_cap_usd);
             });
         }

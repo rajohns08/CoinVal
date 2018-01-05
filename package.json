@@ -1,7 +1,7 @@
 {
   "name": "coinval",
   "version": "1.0.0",
-  "description": "",
+  "description": "Calculate coin value.",
   "main": "calculate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,7 @@
   "author": "Adam Johns",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "1.7.3"
+    "node-fetch": "1.7.3",
+    "jsonfile": "4.0.0"
   }
 }
