@@ -85,5 +85,18 @@
     "WAX": "",
     "Syscoin": "SysCoin",
     "ChainLink": "LINKTrader",
-    "Gnosis": "gnosisPM"
+    "Gnosis": "gnosisPM",
+    "Gas": "",
+    "Enigma": "enigmacatalyst",
+    "Raiden Network Token": "raidennetwork",
+    "Enjin Coin": "EnjinCoin",
+    "Time New Bank": "TimeNewBank",
+    "Bancor": "Bancor",
+    "Skycoin": "SkycoinProject",
+    "GXShares": "GXS",
+    "Storj": "storj",
+    "GameCredits": "GameCreditsCrypto",
+    "Quantstamp": "Quantstamp",
+    "BitBay": "BitBay",
+    "Vertcoin": "vertcoin"
 }

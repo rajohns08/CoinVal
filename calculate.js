@@ -49,7 +49,9 @@ async function getSubredditSubscribers(coin, marketCap, subreddit) {
                 coinObjs.sort(function (coin1, coin2) {
                     return coin2.value - coin1.value;
                 });
-                console.log(coinObjs);
+                for (let i = 0; i < coinObjs.length; i++) {
+                    console.log(i+1 + '. ' + coinObjs[i].name + ': ' + coinObjs[i].value);
+                }
             }
         }
     } catch (error) {
