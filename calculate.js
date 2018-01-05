@@ -5,14 +5,14 @@ let totalCoinsExpected = 0;
 
 async function getTop100MarketCapCoins() {
     try {
-        let response = await fetch('https://api.coinmarketcap.com/v1/ticker/');
+        let response = await fetch('https://api.coinmarketcap.com/v1/ticker/?limit=100');
         if (response.ok) {
             let coins = await response.json();
             coins.forEach(function (coin) {
                 let subreddit = subreddits[coin.name];
                 if (typeof subreddit != 'undefined') {
                     totalCoinsExpected++;
-                    getSubredditSubscribers(coin.name, coin.market_cap_usd, subreddit);
+                    getSubredditSubscribers(coin.name, coin.market_cap_usd, coin.price_usd, subreddit);
                 } else {
                     console.log('NEW COIN FOUND...' + coin.name);
                 }
@@ -23,10 +23,11 @@ async function getTop100MarketCapCoins() {
     }
 }
 
-async function getSubredditSubscribers(coin, marketCap, subreddit) {
+async function getSubredditSubscribers(coin, marketCap, price, subreddit) {
     if (!subreddit) {
         let coinObj = {
             "name": coin,
+            "price": price,
             "value": 0
         }
         coinObjs.push(coinObj);
@@ -42,6 +43,7 @@ async function getSubredditSubscribers(coin, marketCap, subreddit) {
             let value = calculateValue(numSubscribers, marketCap);
             let coinObj = {
                 "name": coin,
+                "price": price,
                 "value": value.toExponential()
             };
             coinObjs.push(coinObj);
@@ -50,7 +52,7 @@ async function getSubredditSubscribers(coin, marketCap, subreddit) {
                     return coin2.value - coin1.value;
                 });
                 for (let i = 0; i < coinObjs.length; i++) {
-                    console.log(i+1 + '. ' + coinObjs[i].name + ': ' + coinObjs[i].value);
+                    console.log(i+1 + '. ' + coinObjs[i].name + ': ' + coinObjs[i].value + ' | $' + coinObjs[i].price);
                 }
             }
         }
