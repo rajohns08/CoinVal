@@ -2,5 +2,20 @@
     "Bitcoin": "Bitcoin",
     "Ripple": "Ripple",
     "Ethereum": "ethereum",
-    "ReddCoin": "reddCoin"
+    "ReddCoin": "reddCoin",
+    "Bitcoin Cash": "Bitcoincash",
+    "Cardano": "cardano",
+    "TRON": "Tronix",
+    "NEM": "nem",
+    "Stellar": "Stellar",
+    "Litecoin": "litecoin",
+    "IOTA": "Iota",
+    "Dash": "dashpay",
+    "NEO": "NEO",
+    "EOS": "eos",
+    "Monero": "Monero",
+    "RaiBlocks": "RaiBlocks",
+    "Bitcoin Gold": "BitcoinGoldHQ",
+    "Qtum": "Qtum",
+    "Siacoin": "siacoin"
 }
